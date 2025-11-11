@@ -1,12 +1,16 @@
 public abstract class OrderItem {
-    double getPrice;
 
-    OrderItem(double getPrice){
-        this.getPrice = getPrice;
-    }
+    private String displayName;
 
-    public double getGetPrice() {
-        return getPrice;
-    }
+   public  OrderItem(String displayName) {
+       this.displayName = displayName;
+   }
+   public String getDisplayName(){
+       return displayName;
+   }
+
+    public abstract double getPrice();
+
+   public abstract String getSummary();
 }
 
