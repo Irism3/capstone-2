@@ -7,7 +7,7 @@ public class Drink extends OrderItem {
     private String flavor;
 
     public Drink(String size, String flavor) {
-        super( "Drink");
+        super("Drink");
         this.size = size;
         this.flavor = flavor;
 

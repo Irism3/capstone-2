@@ -15,7 +15,7 @@ public class Taco extends OrderItem {
 
     //Constructor
     public Taco(String shell, String size, boolean isDeepFried, double getPrice) {
-        super( size + "taco");
+        super(size + "taco");
         this.shell = shell;
         this.size = size;
         this.isDeepFried = isDeepFried;
@@ -67,7 +67,7 @@ public class Taco extends OrderItem {
         return 3.00; //Burrito
     }
 
-    private double extraMeatPrice(){
+    private double extraMeatPrice() {
         if (size.equalsIgnoreCase("Single")) {
             return 0.50;
         }
@@ -76,21 +76,22 @@ public class Taco extends OrderItem {
         }
         return 1.50; //Burrito
     }
-    private double cheesePrice(){
+
+    private double cheesePrice() {
         if (size.equalsIgnoreCase("Single")) {
             return 0.75;
         }
-        if (size.equalsIgnoreCase("3-Taco")){
+        if (size.equalsIgnoreCase("3-Taco")) {
             return 1.50;
         }
         return 2.25;
     }
 
-    private double extraCheesePrice(){
-        if (size.equalsIgnoreCase("Single")){
+    private double extraCheesePrice() {
+        if (size.equalsIgnoreCase("Single")) {
             return 0.30;
         }
-        if (size.equalsIgnoreCase("3-Taco")){
+        if (size.equalsIgnoreCase("3-Taco")) {
             return 0.60;
         }
         return 0.90;
@@ -98,7 +99,7 @@ public class Taco extends OrderItem {
 
     @Override
     public double getPrice() {
-     return basePrice() + lineTotal;   //lineTotal holds all upcharges
+        return basePrice() + lineTotal;   //lineTotal holds all upcharges
     }
 
     @Override
