@@ -13,6 +13,7 @@ public class TacoApp {
     }
 
     private void run(Scanner scanner) {
+
         while (true) {
             System.out.println("====Yummy-Taco=====");
             System.out.println("1) New Order");
@@ -22,7 +23,7 @@ public class TacoApp {
 
             if (t.equals("1")) {
                 startNewOrder(scanner);
-            }else if (t.equals("0")) {
+            } else if (t.equals("0")) {
                 System.out.println("Goodbye!");
                 return;
             } else {
@@ -31,13 +32,14 @@ public class TacoApp {
         }
 
     }
+
     private void startNewOrder(Scanner scanner) {
         Order order = new Order();
 
         while (true) {
             System.out.println("====== Order Screen ======");
             displayItemsNewestFirst(order);
-            System.out.printf("Subtotal: $%.2f%n" , order.getTotalPrice());
+            System.out.printf("Subtotal: $%.2f%n", order.getTotalPrice());
             System.out.println();
             System.out.println("1) Add Taco");
             System.out.println("2) Add Drink");
@@ -72,12 +74,12 @@ public class TacoApp {
             }
         }
     }
-    private List<OrderItem> getItemsReversed (Order order) {
+
+    private List<OrderItem> getItemsReversed(Order order) {
         List<OrderItem> items = new ArrayList<>(order.getItems());
         Collections.reverse(items);
         return items;
     }
-
 
 
     private void displayItemsNewestFirst(Order order) {
@@ -108,11 +110,11 @@ public class TacoApp {
         String size;
         switch (sizeChoice) {
             case "1":
-               size = Taco.sizeSingle;
+                size = Taco.sizeSingle;
                 break;
             case "2":
                 size = Taco.sizeThreeTaco;
-               break;
+                break;
             case "3":
                 size = Taco.sizeBurrito;
                 break;
@@ -124,9 +126,10 @@ public class TacoApp {
 
         // Select shell
         System.out.println("\nSelect Shell: ");
-        System.out.println("1) Flour");
+        System.out.println("1) Flour ");
         System.out.println("2) Corn");
         System.out.println("3) Hard Shell");
+        System.out.println("4) Bowl");
         System.out.println("Choose: ");
         String shellChoice = scanner.nextLine().trim();
 
@@ -141,6 +144,9 @@ public class TacoApp {
             case "3":
                 shell = "Hard Shell";
                 break;
+            case "4":
+                shell = "Bowl";
+                return;
             default:
                 System.out.println("Invalid shell choice.");
                 return;
@@ -149,7 +155,42 @@ public class TacoApp {
         boolean deepFried = askYesNo(scanner, "Deep fried? (y/n): ");
 
         //create a taco
-        Taco taco = new Taco(shell, size , deepFried);
+        Taco taco = new Taco(shell, size, deepFried);
+
+        System.out.println("\nSelect Meat: ");
+        System.out.println("1) Carne Asada");
+        System.out.println("2) al Pastor");
+        System.out.println("3) Carnitas");
+        System.out.println("4) Pollo");
+        System.out.println("5) Chorizo");
+        System.out.println("6) Pescado");
+        String meatChoice = scanner.nextLine().trim();
+
+        String meat;
+        switch (meatChoice) {
+            case "1":
+                meat = "Carne Asada";
+                break;
+            case "2":
+                meat = "Al Pastor";
+                break;
+            case "3":
+                meat = "Carnitas";
+                break;
+            case "4":
+                meat = "Pollo";
+                break;
+            case "5":
+                meat = "Chorizo";
+                break;
+            case "6":
+                meat = "Pescado";
+                break;
+            default:
+                System.out.println("Invalid meat choice.");
+                return;
+        }
+
 
         System.out.println("\nAdd Toppings (type 'done' when finished): ");
         System.out.println("Options: Lettuce, Tomato, Onions, Cilantro, Guacamole, Sour Cream");
@@ -256,6 +297,7 @@ public class TacoApp {
         }
         return false;
     }
+
     private boolean askYesNo(Scanner scanner, String prompt) {
         System.out.println(prompt);
         String response = scanner.nextLine().trim().toLowerCase();

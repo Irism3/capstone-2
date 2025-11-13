@@ -5,7 +5,7 @@ public class ChipsAndSalsa extends OrderItem {
     private String salsaType;
 
     public ChipsAndSalsa(String salsaType) {
-        super("Chips And Salsa");
+        super(" Chips And Salsa ");
         this.salsaType = salsaType;
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 public class Taco extends OrderItem {
 
     public static final String sizeSingle = "Single";
-    public static final String sizeThreeTaco = "3-TacoApp.Taco plate";
+    public static final String sizeThreeTaco = "3-Taco plate";
     public static final String sizeBurrito = "Burrito";
 
     private String shell;
@@ -17,11 +17,12 @@ public class Taco extends OrderItem {
     private List<String> cheeses = new ArrayList<>();
     private List<String> toppings = new ArrayList<>();
     private List<String> sauces = new ArrayList<>();
+    private List<String> slides = new ArrayList<>();
 
 
     //Constructor
     public Taco(String shell, String size, boolean isDeepFried) {
-        super(size + "taco");
+        super(size + " Taco ");
         this.shell = shell;
         this.size = size;
         this.isDeepFried = isDeepFried;
@@ -54,6 +55,9 @@ public class Taco extends OrderItem {
 
     public List<String> getSauces() {
         return new ArrayList<>(sauces);
+    }
+    public List<String> getSlides() {
+        return new ArrayList<>(slides);
     }
 
     public void addMeat(String meat, boolean extra) {
