@@ -1,5 +1,6 @@
+package TacoApp;
+
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -10,7 +11,7 @@ public class ReceiptFile {
 
     public static void saveReceipt(Order order) {
 
-        String folder = "src/main/resources/receipts";
+        String folder = "src/main/resources/receipts.csv";
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
         String fileName = folder + timestamp + ".txt";
 

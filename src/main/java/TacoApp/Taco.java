@@ -1,10 +1,12 @@
+package TacoApp;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Taco extends OrderItem {
 
     public static final String sizeSingle = "Single";
-    public static final String sizeThreeTaco = "3-Taco plate";
+    public static final String sizeThreeTaco = "3-TacoApp.Taco plate";
     public static final String sizeBurrito = "Burrito";
 
     private String shell;
