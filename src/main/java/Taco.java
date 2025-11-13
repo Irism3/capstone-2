@@ -3,6 +3,10 @@ import java.util.List;
 
 public class Taco extends OrderItem {
 
+    public static final String sizeSingle = "Single";
+    public static final String sizeThreeTaco = "3-Taco plate";
+    public static final String sizeBurrito = "Burrito";
+
     private String shell;
     private String size; //single taco , 3-taco plate , burrito
     private boolean isDeepFried;
@@ -14,12 +18,40 @@ public class Taco extends OrderItem {
 
 
     //Constructor
-    public Taco(String shell, String size, boolean isDeepFried, double getPrice) {
+    public Taco(String shell, String size, boolean isDeepFried) {
         super(size + "taco");
         this.shell = shell;
         this.size = size;
         this.isDeepFried = isDeepFried;
 
+    }
+    // Getters
+    public String getShell() {
+        return shell;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public boolean isDeepFried() {
+        return isDeepFried;
+    }
+
+    public List<String> getMeats() {
+        return new ArrayList<>(meats);
+    }
+
+    public List<String> getCheeses() {
+        return new ArrayList<>(cheeses);
+    }
+
+    public List<String> getToppings() {
+        return new ArrayList<>(toppings);
+    }
+
+    public List<String> getSauces() {
+        return new ArrayList<>(sauces);
     }
 
     public void addMeat(String meat, boolean extra) {
@@ -45,56 +77,69 @@ public class Taco extends OrderItem {
     private double lineTotal = 0;
 
     private double basePrice() {
-        if (size.equalsIgnoreCase("Single")) {
-            return 3.50;
+        switch (size) {
+            case sizeSingle:
+                return 3.50;
+            case sizeThreeTaco:
+                return 9.00;
+            case sizeBurrito:
+                return 8.50;
+            default:
+                return 0.0;
         }
-        if (size.equalsIgnoreCase("3-Taco") || size.equalsIgnoreCase("3-Taco Plate")) {
-            return 9.00;
-        }
-        if (size.equalsIgnoreCase("Burrito")) {
-            return 8.50;
-        }
-        return 0;
     }
 
     private double meatPrice() {
-        if (size.equalsIgnoreCase("Single")) {
-            return 3.00;
+        switch (size) {
+            case sizeSingle:
+                return 1.00;
+            case sizeThreeTaco:
+                return 2.00;
+            case sizeBurrito:
+                return 3.00;
+            default:
+                return 0.0;
         }
-        if (size.equalsIgnoreCase("3-Taco")) {
-            return 2.00;
-        }
-        return 3.00; //Burrito
     }
 
     private double extraMeatPrice() {
-        if (size.equalsIgnoreCase("Single")) {
-            return 0.50;
+        switch (size) {
+            case sizeSingle:
+                return 0.50;
+            case sizeThreeTaco:
+                return 1.00;
+            case sizeBurrito:
+                return 1.50;
+            default:
+                return 0.0;
         }
-        if (size.equalsIgnoreCase("3-Taco")) {
-            return 1.00;
-        }
-        return 1.50; //Burrito
     }
 
     private double cheesePrice() {
-        if (size.equalsIgnoreCase("Single")) {
-            return 0.75;
+        switch (size) {
+            case sizeSingle:
+                return 0.75;
+            case sizeThreeTaco:
+                return 1.50;
+            case sizeBurrito:
+                return 2.25;
+            default:
+                return 0.0;
+
         }
-        if (size.equalsIgnoreCase("3-Taco")) {
-            return 1.50;
-        }
-        return 2.25;
     }
 
     private double extraCheesePrice() {
-        if (size.equalsIgnoreCase("Single")) {
-            return 0.30;
+        switch (size) {
+            case sizeSingle:
+                return 0.30;
+            case sizeThreeTaco:
+                return 0.60;
+            case sizeBurrito:
+                return 0.90;
+            default:
+                return 0.0;
         }
-        if (size.equalsIgnoreCase("3-Taco")) {
-            return 0.60;
-        }
-        return 0.90;
     }
 
     @Override

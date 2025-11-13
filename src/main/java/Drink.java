@@ -3,6 +3,12 @@ import java.util.List;
 
 public class Drink extends OrderItem {
 
+    //Size constants
+    public static final String sizeSmall = "Small";
+    public static final String sizeMedium = "Medium";
+    public static final String sizeLarge = "Large";
+
+
     private String size;
     private String flavor;
 
@@ -13,19 +19,25 @@ public class Drink extends OrderItem {
 
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public String getFlavor() {
+        return flavor;
+    }
 
     @Override
     public double getPrice() {
-        switch (size.toLowerCase()) {
-            case "small":
+        switch (size) {
+            case sizeSmall:
                 return 2.00;
-            case "medium":
+            case sizeMedium:
                 return 2.50;
-            case "large":
+            case sizeLarge:
                 return 3.00;
             default:
                 return 0.0;
-
         }
     }
 

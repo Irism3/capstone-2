@@ -7,6 +7,10 @@ public class ChipsAndSalsa extends OrderItem {
         this.salsaType = salsaType;
     }
 
+    public String getSalsaType() {
+        return salsaType;
+    }
+
     @Override
     public double getPrice() {
         return 1.50;
