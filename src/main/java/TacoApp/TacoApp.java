@@ -99,30 +99,6 @@ public class TacoApp {
     private void addTaco(Scanner scanner, Order order) {
         System.out.println("\n===== Build Your Taco =====");
 
-        //Select size
-        System.out.println("\nSelect Size: ");
-        System.out.println("1) Single Taco  - $3.50");
-        System.out.println("2) 3-Taco Plate - $9.00");
-        System.out.println("3) Burrito - $8.50");
-        System.out.println("Choose: ");
-        String sizeChoice = scanner.nextLine().trim();
-
-        String size;
-        switch (sizeChoice) {
-            case "1":
-                size = Taco.sizeSingle;
-                break;
-            case "2":
-                size = Taco.sizeThreeTaco;
-                break;
-            case "3":
-                size = Taco.sizeBurrito;
-                break;
-            default:
-                System.out.println("Invalid size choice. ");
-                return;
-
-        }
 
         // Select shell
         System.out.println("\nSelect Shell: ");
@@ -151,6 +127,33 @@ public class TacoApp {
                 System.out.println("Invalid shell choice.");
                 return;
         }
+
+
+        //Select size
+        System.out.println("\nSelect Size: ");
+        System.out.println("1) Single Taco  ");
+        System.out.println("2) 3-Taco Plate ");
+        System.out.println("3) Burrito ");
+        System.out.println("Choose: ");
+        String sizeChoice = scanner.nextLine().trim();
+
+        String size;
+        switch (sizeChoice) {
+            case "1":
+                size = Taco.sizeSingle;
+                break;
+            case "2":
+                size = Taco.sizeThreeTaco;
+                break;
+            case "3":
+                size = Taco.sizeBurrito;
+                break;
+            default:
+                System.out.println("Invalid size choice. ");
+                return;
+
+        }
+
 
         boolean deepFried = askYesNo(scanner, "Deep fried? (y/n): ");
 
@@ -191,17 +194,57 @@ public class TacoApp {
                 return;
         }
 
+        boolean extraMeat = askYesNo(scanner, "Extra meat? (y/n): ");
+        taco.addMeat(meat, extraMeat);
 
-        System.out.println("\nAdd Toppings (type 'done' when finished): ");
-        System.out.println("Options: Lettuce, Tomato, Onions, Cilantro, Guacamole, Sour Cream");
+        System.out.println("\nSelect Cheese: ");
+        System.out.println("1) Queso Fresco ");
+        System.out.println("2) Oaxaca ");
+        System.out.println("3) Cotija ");
+        System.out.println("4) Cheddar ");
+        String cheeseChoice = scanner.nextLine().trim();
+
+        String cheese;
+        switch (cheeseChoice) {
+            case "1":
+                cheese = "Queso Fresco";
+                break;
+            case "2":
+                cheese = "Oaxaca";
+                break;
+            case "3":
+                cheese = "Cotija";
+                break;
+            case "4":
+                cheese = "Cheddar";
+                break;
+            default:
+                System.out.println("Invalid cheese choice.");
+                return;
+
+        }
+        boolean extraCheese = askYesNo(scanner, "Extra cheese? (y/n): ");
+        taco.addCheese(cheese, extraCheese);
+
+
+        System.out.println("\n--- Add Toppings ---");
+        System.out.println("Type 'done' when you're finished.\n");
+
+        System.out.println("Available Toppings:");
+        System.out.println("Lettuce, Cilantro, Onions, Tomatoes, Jalapeños, Radishes, Pico De Gallo, Guacamole, Corn");
+
+        String topping;
+
         while (true) {
-            System.out.println("Add topping: ");
-            String topping = scanner.nextLine().trim();
+            System.out.println("Enter a topping (or 'done): ");
+            topping = scanner.nextLine().trim();
+
             if (topping.equalsIgnoreCase("done")) {
                 break;
             }
             if (!topping.isEmpty()) {
                 taco.addToppings(topping);
+                System.out.println(topping + "added!\n");
             }
         }
 
@@ -218,8 +261,24 @@ public class TacoApp {
             }
         }
 
+        System.out.println("\nAdd Sides (Type 'done' when finished):");
+        System.out.println("Options: Lime,Crema");
+        while (true) {
+            System.out.println("Add sides: ");
+            String sides = scanner.nextLine().trim();
+            if (sides.equalsIgnoreCase("done")) {
+                break;
+            }
+            if (!sides.isEmpty()) {
+                taco.addSides(sides);
+            }
+
+        }
+
         order.addItem(taco);
         System.out.println("\nTaco added to order!");
+
+
     }
 
     private void addDrink(Scanner scanner, Order order) {
@@ -249,15 +308,38 @@ public class TacoApp {
         }
 
         System.out.println("\nSelect Flavor:");
-        System.out.println("Options: Coke, Diet Coke, Horchata, Agua De Jamaica, Sprite, Water");
+        System.out.println("1) Horchata ");
+        System.out.println("2) Jamaica ");
+        System.out.println("3) Coke ");
+        System.out.println("4) Sprite ");
+        System.out.println("5) Water ");
         System.out.println("Flavor: ");
-        String flavor = scanner.nextLine().trim();
+        String flavorChoice = scanner.nextLine().trim();
 
-        if (flavor.isEmpty()) {
-            System.out.println("Invalid flavor.");
-            return;
+        String flavor;
+        switch (flavorChoice) {
+            case "1":
+                flavor = "Horchata";
+                break;
+            case "2":
+                flavor = "Jamaica";
+                break;
+            case "3":
+                flavor = "Coke";
+                break;
+            case "4":
+                flavor = "Sprite";
+                break;
+            case "5":
+                flavor = "Water";
+                break;
+            default:
+                System.out.println("Invalid flavor choice");
+                return;
         }
-        Drink drink = new Drink(size, flavor);
+
+
+        Drink drink = new Drink(size, flavorChoice);
         order.addItem(drink);
         System.out.println("Drink added to order!");
     }

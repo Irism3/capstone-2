@@ -17,7 +17,7 @@ public class Taco extends OrderItem {
     private List<String> cheeses = new ArrayList<>();
     private List<String> toppings = new ArrayList<>();
     private List<String> sauces = new ArrayList<>();
-    private List<String> slides = new ArrayList<>();
+    private List<String> sides = new ArrayList<>();
 
 
     //Constructor
@@ -56,14 +56,18 @@ public class Taco extends OrderItem {
     public List<String> getSauces() {
         return new ArrayList<>(sauces);
     }
-    public List<String> getSlides() {
-        return new ArrayList<>(slides);
+    public List<String> getSides() {
+        return new ArrayList<>(sides);
     }
 
     public void addMeat(String meat, boolean extra) {
-        meats.add(meat);
-        if (!extra) lineTotal += meatPrice();
-        else lineTotal += extraMeatPrice();
+       if (extra) {
+           meats.add(meat + "(Extra)");
+           lineTotal += extraMeatPrice();
+       } else {
+           meats.add(meat);
+           lineTotal += meatPrice();
+       }
     }
 
     public void addCheese(String cheese, boolean extra) {
@@ -78,6 +82,9 @@ public class Taco extends OrderItem {
 
     public void addSauce(String sauce) {
         sauces.add(sauce);
+    }
+    public void addSides(String side) {
+        sides.add(side);
     }
 
     private double lineTotal = 0;
@@ -150,7 +157,7 @@ public class Taco extends OrderItem {
 
     @Override
     public double getPrice() {
-        return basePrice() + lineTotal;   //lineTotal holds all upcharges
+        return basePrice() + meatPrice() + extraMeatPrice()+ cheesePrice() + extraCheesePrice() + lineTotal;   //lineTotal holds all upcharges
     }
 
     @Override

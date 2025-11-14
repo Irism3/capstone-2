@@ -1,8 +1,10 @@
 package TacoApp;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -12,13 +14,14 @@ public class ReceiptFile {
     public static void saveReceipt(Order order) {
 
         String folder = "src/main/resources/receipts.csv";
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
-       // String fileName = folder + timestamp + ".txt";
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd- HHmmss"));
+
 
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/receipts.csv"))) {
             writer.write("=====Yummy-Taco Receipt=====\n");
             writer.write("Date: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMM d, yyyy h:mm a")) + "\n\n");
+
 
             for (OrderItem item : order.getItems()) {
                 writer.write(item.getDisplayName() + "- $" + String.format("%.2f", item.getPrice()) + "\n");
@@ -30,7 +33,8 @@ public class ReceiptFile {
                     writer.write("  Meats:  " + taco.getMeats() + "\n");
                     writer.write("  Cheese:  " + taco.getCheeses() + "\n");
                     writer.write("  Toppings:  " + taco.getToppings() + "\n");
-                    writer.write("  Sauces:  " + taco.getSauces() + "\n\n");
+                    writer.write("  Sauces:  " + taco.getSauces() + "\n");
+                    writer.write("  Slices:  " + taco.getSides() + "\n\n");
                 }
             }
 
