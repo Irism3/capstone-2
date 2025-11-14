@@ -2,9 +2,10 @@ package TacoApp;
 
 import java.util.*;
 
-
+// Main application class for the Yummy-Taco ordering system
 public class TacoApp {
 
+    // Entry point of the application
     public static void main(String[] args) {
         TacoApp app = new TacoApp();
         try (Scanner myScanner = new Scanner(System.in)) {
@@ -12,6 +13,7 @@ public class TacoApp {
         }
     }
 
+    // Main application loop - displays main menu and handles user choices
     private void run(Scanner scanner) {
 
         while (true) {
@@ -33,6 +35,7 @@ public class TacoApp {
 
     }
 
+    // Starts a new order process and handles the order screen menu
     private void startNewOrder(Scanner scanner) {
         Order order = new Order();
 
@@ -59,11 +62,13 @@ public class TacoApp {
                     addChips(scanner, order);
                     break;
                 case "4":
+                    // If checkout is successful, return to main menu
                     if (checkout(scanner, order)) {
                         return;
                     }
                     break;
                 case "0":
+                    // Confirm cancellation before returning to main menu
                     if (askYesNo(scanner, "Cancel this order? (y/n): ")) {
                         System.out.println("Order canceled.\n");
                         return;
@@ -75,13 +80,14 @@ public class TacoApp {
         }
     }
 
+    // Returns a reversed list of order items (newest first)
     private List<OrderItem> getItemsReversed(Order order) {
         List<OrderItem> items = new ArrayList<>(order.getItems());
         Collections.reverse(items);
         return items;
     }
 
-
+    //Displays all items in the order with newest items shown first
     private void displayItemsNewestFirst(Order order) {
         List<OrderItem> items = getItemsReversed(order);
         if (items.isEmpty()) {
@@ -96,11 +102,12 @@ public class TacoApp {
         }
     }
 
+    // Guides the user through building a custom taco and adds it to the order
     private void addTaco(Scanner scanner, Order order) {
         System.out.println("\n===== Build Your Taco =====");
 
 
-        // Select shell
+        // Select shell type
         System.out.println("\nSelect Shell: ");
         System.out.println("1) Flour ");
         System.out.println("2) Corn");
@@ -122,7 +129,7 @@ public class TacoApp {
                 break;
             case "4":
                 shell = "Bowl";
-                return;
+                break;
             default:
                 System.out.println("Invalid shell choice.");
                 return;
@@ -155,11 +162,13 @@ public class TacoApp {
         }
 
 
+        // Ask if user wants it deep fried
         boolean deepFried = askYesNo(scanner, "Deep fried? (y/n): ");
 
-        //create a taco
+        // Create the taco with selected shell, size, and deep fried option
         Taco taco = new Taco(shell, size, deepFried);
 
+        // Select meat type
         System.out.println("\nSelect Meat: ");
         System.out.println("1) Carne Asada");
         System.out.println("2) al Pastor");
@@ -194,9 +203,11 @@ public class TacoApp {
                 return;
         }
 
+        // Ask if user wants extra meat and add to taco
         boolean extraMeat = askYesNo(scanner, "Extra meat? (y/n): ");
         taco.addMeat(meat, extraMeat);
 
+        // Select cheese type
         System.out.println("\nSelect Cheese: ");
         System.out.println("1) Queso Fresco ");
         System.out.println("2) Oaxaca ");
@@ -223,10 +234,13 @@ public class TacoApp {
                 return;
 
         }
+
+        // Ask if user wants extra cheese and add to taco
         boolean extraCheese = askYesNo(scanner, "Extra cheese? (y/n): ");
         taco.addCheese(cheese, extraCheese);
 
 
+        // Add toppings - user can add multiple toppings
         System.out.println("\n--- Add Toppings ---");
         System.out.println("Type 'done' when you're finished.\n");
 
@@ -236,7 +250,7 @@ public class TacoApp {
         String topping;
 
         while (true) {
-            System.out.println("Enter a topping (or 'done): ");
+            System.out.println("Enter a topping (or 'done'): ");
             topping = scanner.nextLine().trim();
 
             if (topping.equalsIgnoreCase("done")) {
@@ -244,50 +258,77 @@ public class TacoApp {
             }
             if (!topping.isEmpty()) {
                 taco.addToppings(topping);
-                System.out.println(topping + "added!\n");
+                System.out.println(topping + "  added! \n");
             }
         }
 
-        System.out.println("\nAdd Sauces (type 'done' when finished):");
-        System.out.println("Options: Mild, Hot, Verde, Chipotle");
-        while (true) {
-            System.out.println("Add sauce: ");
-            String sauce = scanner.nextLine().trim();
-            if (sauce.equalsIgnoreCase("done")) {
-                break;
-            }
-            if (!sauce.isEmpty()) {
-                taco.addSauce(sauce);
+        // Ask if user wants to add sauces
+        System.out.println("Would you like to add a sauce? (yes/no): ");
+        String wantsSauce = scanner.nextLine().trim();
+
+        if (wantsSauce.equalsIgnoreCase("yes")) {
+
+            // Add sauces - user can add multiple sauces
+            System.out.println("\n--- Add Sauces ---");
+            System.out.println("Type 'done' when you're finished.\n");
+
+            System.out.println("Available Sauces:");
+            System.out.println(" Salsa Verde, Salsa Roja, Chipotle, Habanero, Mild, Extra Hot\n");
+
+            String sauce;
+
+            while (true) {
+                System.out.println("Enter sauce choice (or 'done') ");
+                sauce = scanner.nextLine().trim();
+
+                if (sauce.equalsIgnoreCase("done")) {
+                    break;
+                }
+                if (!sauce.isEmpty()) {
+                    taco.addSauce(sauce);
+                    System.out.println(sauce + " added!\n");
+                }
             }
         }
 
-        System.out.println("\nAdd Sides (Type 'done' when finished):");
-        System.out.println("Options: Lime,Crema");
+        // Add sides - user can add multiple sides
+        System.out.println("\n--- Add Sides---");
+        System.out.println("Type 'done' when you're finished.\n");
+
+        System.out.println("Available Slides:");
+        System.out.println(" Lime, Salt, Crema");
+
+        String sides;
+
         while (true) {
-            System.out.println("Add sides: ");
-            String sides = scanner.nextLine().trim();
+            System.out.println("Enter sides choice (or 'done') ");
+            sides = scanner.nextLine().trim();
             if (sides.equalsIgnoreCase("done")) {
                 break;
             }
             if (!sides.isEmpty()) {
                 taco.addSides(sides);
+                System.out.println(sides + "added!\n");
             }
 
         }
 
+        // Add the completed taco to the order
         order.addItem(taco);
         System.out.println("\nTaco added to order!");
 
 
     }
 
+    // Guides the user through adding a drink to the order
     private void addDrink(Scanner scanner, Order order) {
         System.out.println("\n===== Add Drink =====");
 
+        // Select drink size
         System.out.println("\nSelect Size:");
-        System.out.println("1) Small - $2.00");
-        System.out.println("2) Medium - $2.50");
-        System.out.println("3) Large - $3.00");
+        System.out.println("1) Small ");
+        System.out.println("2) Medium ");
+        System.out.println("3) Large ");
         System.out.println("Choose: ");
         String sizeChoice = scanner.nextLine().trim();
 
@@ -307,6 +348,7 @@ public class TacoApp {
                 return;
         }
 
+        // Select drink flavor
         System.out.println("\nSelect Flavor:");
         System.out.println("1) Horchata ");
         System.out.println("2) Jamaica ");
@@ -339,39 +381,76 @@ public class TacoApp {
         }
 
 
-        Drink drink = new Drink(size, flavorChoice);
+        // Create drink and add to order
+        Drink drink = new Drink(size, flavor);
         order.addItem(drink);
         System.out.println("Drink added to order!");
     }
 
+    // Guides the user through adding chips and salsa to the order
     private void addChips(Scanner scanner, Order order) {
         System.out.println("\n======= Add Chips & Salsa ======");
-        System.out.println("\nSelect Salsa:");
-        System.out.println("Options: Mild, Medium, Hot, Verde");
-        System.out.println("Salsa type: ");
-        String salsaType = scanner.nextLine().trim();
 
-        if (salsaType.isEmpty()) {
-            System.out.println("Invalid salsa choice.");
-            return;
+        // Select salsa type
+        System.out.println("\nChoose your salsa:");
+        System.out.println("1) Salsa Verde");
+        System.out.println("2) Salsa Roja");
+        System.out.println("3) Chipotle");
+        System.out.println("4) Habanero");
+        System.out.println("5) Mild");
+        System.out.println("6) Extra Hot");
+        System.out.println("Enter choice:");
+        String salsaChoice = scanner.nextLine().trim();
+
+        String salsa;
+        switch (salsaChoice) {
+            case "1":
+                salsa = "Salsa Verde";
+                break;
+            case "2":
+                salsa = "Salsa Roja";
+                break;
+            case "3":
+                salsa = "Chipotle";
+                break;
+            case "4":
+                salsa = "Habanero";
+                break;
+            case "5":
+                salsa = "Mild";
+                break;
+            case "6":
+                salsa = "Extra Hot";
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                return;
         }
-        ChipsAndSalsa chips = new ChipsAndSalsa(salsaType);
+        ChipsAndSalsa chips = new ChipsAndSalsa(salsa);
         order.addItem(chips);
-        System.out.println("Chips & Salsa added to order!");
+        System.out.println("\nAdded: " + chips.getSummary());
+
+
     }
 
+    // Handles the checkout process - displays order summary and confirms payment
+    // Returns true if checkout is successful, false otherwise
     private boolean checkout(Scanner scanner, Order order) {
+
         if (order.getItems().isEmpty()) {
             System.out.println("Cannot checkout with an empty order.");
             return false;
         }
+        // Display final order summary
         System.out.println("\n===== Order Summary =====");
         order.displayOrder();
 
+        // Confirm order with user
         if (askYesNo(scanner, "Confirm order? (y/n): ")) {
             System.out.println("\nProcessing payment....");
             System.out.println("Payment successful!");
 
+            // Save receipt to file
             ReceiptFile.saveReceipt(order);
 
             System.out.println("\nThank you for your order!");
@@ -380,6 +459,7 @@ public class TacoApp {
         return false;
     }
 
+    // Helper method to ask yes/no questions
     private boolean askYesNo(Scanner scanner, String prompt) {
         System.out.println(prompt);
         String response = scanner.nextLine().trim().toLowerCase();

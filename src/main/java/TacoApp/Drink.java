@@ -1,8 +1,11 @@
 package TacoApp;
 
+
+// Represents a drink item that can be ordered
+// Extends OrderItem to add size and flavor properties
 public class Drink extends OrderItem {
 
-    //Size constants
+    // Size constants - used to ensure consistent size names throughout the app
     public static final String sizeSmall = "Small";
     public static final String sizeMedium = "Medium";
     public static final String sizeLarge = "Large";
@@ -11,6 +14,7 @@ public class Drink extends OrderItem {
     private String size;
     private String flavor;
 
+    // Constructor
     public Drink(String size, String flavor) {
         super(" Drink ");
         this.size = size;
@@ -18,14 +22,17 @@ public class Drink extends OrderItem {
 
     }
 
+    // Returns the size of the drink
     public String getSize() {
         return size;
     }
 
+    // Returns the flavor of the drink
     public String getFlavor() {
         return flavor;
     }
 
+    // Calculates the price based on the drink size
     @Override
     public double getPrice() {
         switch (size) {
@@ -40,9 +47,10 @@ public class Drink extends OrderItem {
         }
     }
 
+    // Returns a formatted string summary of the drink order
     @Override
     public String getSummary() {
-        return size + " Drink - " + flavor + "\n" + String.format("Price: $%.2f", getPrice());
+        return String.format("Drink (%s, %s) - $%.2f" ,size,flavor,getPrice());
     }
 
 }

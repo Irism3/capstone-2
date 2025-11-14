@@ -11,7 +11,7 @@ public class Order {
         this.totalPrice = 0.0;
     }
 
-    // add items
+    // Adds an item to the order and updates the total price
     public void addItem(OrderItem item) {
         items.add(item);
         totalPrice += item.getPrice();
@@ -24,12 +24,12 @@ public class Order {
         }
     }
 
-    //get total price
+    // Returns the total price of all items in the order
     public double getTotalPrice() {
         return totalPrice;
     }
 
-    //show summary
+    // Shows each item and the total price
     public void displayOrder() {
         System.out.println("Order Summary");
         for (OrderItem item : items) {
@@ -39,7 +39,7 @@ public class Order {
         System.out.println("--------------------------");
     }
 
-    // getter for items
+    // Returns the list of all items in the order
     public ArrayList<OrderItem> getItems() {
         return items;
     }
