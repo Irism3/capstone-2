@@ -1,0 +1,19 @@
+=====Yummy-Taco Receipt=====
+Date: Nov 14, 2025 1:41 AM
+
+ Drink - $2.00
+3-Taco plate Taco - $17.60
+  Shell:  Hard Shell
+  Size:  3-Taco plate
+  Deep Fried:  No
+  Meats:  [Chorizo]
+  Cheese:  [Cheddar]
+  Toppings:  [corn]
+  Sauces:  [mild]
+  Slices:  [lime]
+
+ Chips And Salsa - $1.50
+==========================
+Total: $21.10
+==========================
+Thank you for visiting Yummy-Taco! 

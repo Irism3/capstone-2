@@ -1,0 +1,9 @@
+=====Yummy-Taco Receipt=====
+Date: Nov 14, 2025 1:29 AM
+
+ Chips And Salsa - $1.50
+ Drink - $2.00
+==========================
+Total: $3.50
+==========================
+Thank you for visiting Yummy-Taco! 

@@ -1,0 +1,8 @@
+=====Yummy-Taco Receipt=====
+Date: Nov 14, 2025 12:05 AM
+
+ Drink - $2.00
+==========================
+Total: $2.00
+==========================
+Thank you for visiting Yummy-Taco! 
