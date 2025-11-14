@@ -1,20 +1,18 @@
-package TacoApp;
+package pluralsight;
 
 import java.util.*;
 
-// Main application class for the Yummy-Taco ordering system
+
 public class TacoApp {
 
-    // Entry point of the application
-    public static void main(String[] args) {
-        TacoApp app = new TacoApp();
-        try (Scanner myScanner = new Scanner(System.in)) {
-            app.run(myScanner);
-        }
-    }
+
+    private Scanner scanner = new Scanner(System.in);
+    private Order order = new Order();
+
 
     // Main application loop - displays main menu and handles user choices
-    private void run(Scanner scanner) {
+    public void run() {
+
 
         while (true) {
             System.out.println("====Yummy-Taco=====");
@@ -466,3 +464,4 @@ public class TacoApp {
         return response.equals("y") || response.equals("yes");
     }
 }
+

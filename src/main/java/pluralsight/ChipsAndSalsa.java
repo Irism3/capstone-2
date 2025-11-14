@@ -1,4 +1,4 @@
-package TacoApp;
+package pluralsight;
 
 // Extends OrderItem to add salsa type selection
 public class ChipsAndSalsa extends OrderItem {

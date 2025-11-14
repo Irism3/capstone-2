@@ -1,0 +1,17 @@
+=====Yummy-Taco Receipt=====
+Date: Nov 14, 2025 10:48 AM
+
+Single Taco - $7.80
+  Shell:  Corn
+  Size:  Single
+  Deep Fried:  Yes
+  Meats:  [Al Pastor]
+  Cheese:  [Queso Fresco]
+  Toppings:  [onions]
+  Sauces:  [salsa verde]
+  Slices:  [lime, salt]
+
+==========================
+Total: $7.80
+==========================
+Thank you for visiting Yummy-Taco! 
